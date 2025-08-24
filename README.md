@@ -74,13 +74,13 @@ CREATE TABLE Customer (
 );
 
 
-## 🗃️ Sample Data
+##  Sample Data
 
 This section contains **sample entries** for all tables in the BookMyShow database to help test queries and relationships.
 
 ---
 
-### 🎭 Theatre
+###  Theatre
 
 | TheatreID | Name        | Location   |
 |-----------|------------|-----------|
@@ -94,6 +94,82 @@ INSERT INTO Theatre VALUES (1, 'PVR Cinemas', 'Amritsar');
 INSERT INTO Theatre VALUES (2, 'Cinepolis', 'Delhi');
 INSERT INTO Theatre VALUES (3, 'INOX', 'Mumbai');
 
+### Movie
+
+| MovieID | Title     | Duration | Language | Genre  |
+| ------- | --------- | -------- | -------- | ------ |
+| 1       | Inception | 148      | English  | Sci-Fi |
+| 2       | Dangal    | 161      | Hindi    | Drama  |
+| 3       | Avengers  | 180      | English  | Action |
+
+```sql
+INSERT INTO Movie VALUES (1, 'Inception', 148, 'English', 'Sci-Fi');
+INSERT INTO Movie VALUES (2, 'Dangal', 161, 'Hindi', 'Drama');
+INSERT INTO Movie VALUES (3, 'Avengers', 180, 'English', 'Action');
 
 
+### Show
+
+| ShowID | MovieID | TheatreID | ShowDate   | StartTime | EndTime |
+| ------ | ------- | --------- | ---------- | --------- | ------- |
+| 1      | 1       | 1         | 2025-08-24 | 18:00     | 20:30   |
+| 2      | 2       | 2         | 2025-08-24 | 15:00     | 17:45   |
+| 3      | 3       | 3         | 2025-08-24 | 20:00     | 23:00   |
+
+```sql
+INSERT INTO Show VALUES (1, 1, 1, '2025-08-24', '18:00', '20:30');
+INSERT INTO Show VALUES (2, 2, 2, '2025-08-24', '15:00', '17:45');
+INSERT INTO Show VALUES (3, 3, 3, '2025-08-24', '20:00', '23:00');
+
+### Ticket
+| TicketID | ShowID | SeatNumber | Price  |
+| -------- | ------ | ---------- | ------ |
+| 1        | 1      | A1         | 250.00 |
+| 2        | 1      | A2         | 250.00 |
+| 3        | 2      | B1         | 200.00 |
+
+```sql
+INSERT INTO Ticket VALUES (1, 1, 'A1', 250.00);
+INSERT INTO Ticket VALUES (2, 1, 'A2', 250.00);
+INSERT INTO Ticket VALUES (3, 2, 'B1', 200.00);
+
+### Customer
+| CustomerID | Name  | Email                                         |
+| ---------- | ----- | --------------------------------------------- |
+| 1          | R M   | [rm@example.com](mailto:rm@example.com)       |
+| 2          | Pooja | [pooja@example.com](mailto:pooja@example.com) |
+| 3          | Aman  | [aman@example.com](mailto:aman@example.com)   |
+
+```sql
+INSERT INTO Customer VALUES (1, 'R M', 'rm@example.com');
+INSERT INTO Customer VALUES (2, 'Pooja', 'pooja@example.com');
+INSERT INTO Customer VALUES (3, 'Aman', 'aman@example.com');
+
+
+##  Part 2 (P2) – Fetch Shows
+
+**Objective:**  
+List all shows for a given theatre on a selected date, including show timings.
+
+**SQL Query Example:**
+
+```sql
+SELECT 
+    s.ShowID,
+    m.Title AS MovieName,
+    t.Name AS TheatreName,
+    s.ShowDate,
+    s.StartTime,
+    s.EndTime
+FROM Show s
+JOIN Movie m ON s.MovieID = m.MovieID
+JOIN Theatre t ON s.TheatreID = t.TheatreID
+WHERE s.TheatreID = 1
+  AND s.ShowDate = '2025-08-24';
+
+**Sample Output:**
+
+| ShowID | MovieName | TheatreName | ShowDate   | StartTime | EndTime |
+|--------|-----------|------------|------------|-----------|---------|
+| 1      | Inception | PVR Cinemas | 2025-08-24 | 18:00     | 20:30   |
 
