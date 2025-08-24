@@ -136,9 +136,9 @@ INSERT INTO Ticket VALUES (3, 2, 'B1', 200.00);
 ### Customer
 | CustomerID | Name  | Email                                         |
 | ---------- | ----- | --------------------------------------------- |
-| 1          | R M   | [rm@example.com](mailto:rm@example.com)       |
-| 2          | Pooja | [pooja@example.com](mailto:pooja@example.com) |
-| 3          | Aman  | [aman@example.com](mailto:aman@example.com)   |
+| 1          | R M   | [rm@example.com]     |
+| 2          | Pooja | [pooja@example.com] |
+| 3          | Aman  | [aman@example.com]  |
 
 ```sql
 INSERT INTO Customer VALUES (1, 'R M', 'rm@example.com');
