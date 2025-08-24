@@ -72,3 +72,28 @@ CREATE TABLE Customer (
     Name VARCHAR(100),
     Email VARCHAR(100)
 );
+
+
+## 🗃️ Sample Data
+
+This section contains **sample entries** for all tables in the BookMyShow database to help test queries and relationships.
+
+---
+
+### 🎭 Theatre
+
+| TheatreID | Name        | Location   |
+|-----------|------------|-----------|
+| 1         | PVR Cinemas | Amritsar  |
+| 2         | Cinepolis   | Delhi     |
+| 3         | INOX       | Mumbai    |
+
+**SQL Insert Example:**
+```sql
+INSERT INTO Theatre VALUES (1, 'PVR Cinemas', 'Amritsar');
+INSERT INTO Theatre VALUES (2, 'Cinepolis', 'Delhi');
+INSERT INTO Theatre VALUES (3, 'INOX', 'Mumbai');
+
+
+
+
